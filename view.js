@@ -12,9 +12,10 @@ function updateShapeList(forme, id){
 
 function htmlForme(forme, id){
     let htmlContent = `<li id="lirm${id}">`
-    if(forme.constructor === Rectangle){ htmlContent += `<span style="color:'${forme.couleur}'">□</span> Rect` }
-    if(forme.constructor === Line){ htmlContent += `<span style="color:'${forme.couleur}'">/</span> Line` }
-    htmlContent += `<button type="button" class="btn btn-default remove" id="burm${id}"><span class="glyphicon glyphicon-remove-sign"></span></button>`
+    if(forme.constructor === Rectangle){ htmlContent += `<span>□ Rect </span>` }
+    else if(forme.constructor === Line){ htmlContent += `<span>/ Line </span>` }
+    else if(forme.constructor === Circle){ htmlContent += `<span>&#9711 Circle </span>` }
+    htmlContent += `<button type="button" class="btn btn-default remove" id="burm${id}" style="background:${forme.couleur}"><span class="glyphicon glyphicon-remove-sign"></span></button>`
     htmlContent += '</li>'
     return htmlContent
 }
@@ -45,7 +46,7 @@ Circle.prototype.paint = function(ctx) {
     ctx.strokeStyle = getCircle.color;
     ctx.lineWidth = getCircle.thickness;
     ctx.beginPath();
-    ctx.arc(getCircle.initX, getCircle.initY, Math.sqrt(Math.pow(getCircle.finalX,2)+Math.pow(getCircle.finalY,2)), 0, 2 * Math.PI)
+    ctx.arc(getCircle.initX, getCircle.initY, Math.sqrt(Math.pow(getCircle.finalX-getCircle.initX,2)+Math.pow(getCircle.finalY-getCircle.initY,2)), 0, 2 * Math.PI)
     ctx.stroke();
 };
 

@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1 };
+var editingMode = { rect: 0, line: 1, circle : 3 };
 
 
 function Pencil(ctx, drawing, canvas) {
@@ -12,6 +12,7 @@ function Pencil(ctx, drawing, canvas) {
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 	document.getElementById('butRect').onclick = ()=>{this.currEditingMode = editingMode.rect}
 	document.getElementById('butLine').onclick = ()=>{this.currEditingMode = editingMode.line}
+	document.getElementById('butCircle').onclick = ()=>{this.currEditingMode = editingMode.circle}
 	document.getElementById('spinnerWidth').onchange = (e)=>{this.currLineWidth = e.target.value}
 	document.getElementById('colour').onchange = (e)=>{this.currColour = e.target.value}
 
@@ -31,6 +32,9 @@ function Pencil(ctx, drawing, canvas) {
 		}
 		if(this.currEditingMode == editingMode.line){
 			this.currentShape = new Line(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour);
+		}
+		if(this.currEditingMode == editingMode.circle){
+			this.currentShape = new Circle(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour);
 		}
 		drawing.paint(ctx,canvas)
 		this.currentShape.paint(ctx)
