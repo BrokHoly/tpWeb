@@ -39,6 +39,16 @@ Line.prototype.paint = function(ctx) {
     ctx.stroke();
 };
 
+Circle.prototype.paint = function(ctx) {
+    var getCircle = this.Getters();
+    console.log(getCircle)
+    ctx.strokeStyle = getCircle.color;
+    ctx.lineWidth = getCircle.thickness;
+    ctx.beginPath();
+    ctx.arc(getCircle.initX, getCircle.initY, Math.sqrt(Math.pow(getCircle.finalX,2)+Math.pow(getCircle.finalY,2)), 0, 2 * Math.PI)
+    ctx.stroke();
+};
+
 Drawing.prototype.paint = function(ctx) {
     ctx.fillStyle = '#F0F0F0'; // set canvas' background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -46,5 +56,5 @@ Drawing.prototype.paint = function(ctx) {
         // now fill the canvas
         eltDuTableau.paint(ctx);
     });
-  };
+};
   

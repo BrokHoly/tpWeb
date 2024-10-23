@@ -72,5 +72,24 @@ class Line extends Forme{
     }
 }
 
+class Circle extends Forme{
+    constructor(startX,startY,endX,endY,epaisseur,couleur){
+        super(startX,startY,epaisseur,couleur);
+        this.endX = endX;
+        this.endY = endY;
+    }
+
+    Getters(){
+        return {
+            initX : this.startX,
+            initY : this.startY,
+            finalX : this.endX,
+            finalY : this.endY,
+            color : this.couleur,
+            thickness : this.epaisseur,
+        }
+    }
+}
+
 
 
