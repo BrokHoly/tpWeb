@@ -1,7 +1,3 @@
-
-// Implémenter ici les 4 classes du modèle.
-// N'oubliez pas l'héritage !
-
 class Drawing {
     constructor(){
 
@@ -91,5 +87,24 @@ class Circle extends Forme{
     }
 }
 
+class Polygon extends Forme{
+    constructor(startX,startY,endX,endY,epaisseur,couleur, sides){
+        super(startX,startY,epaisseur,couleur);
+        this.endX = endX;
+        this.endY = endY;
+        this.sides = sides
+    }
 
+    Getters(){
+        return {
+            initX : this.startX,
+            initY : this.startY,
+            finalX : this.endX,
+            finalY : this.endY,
+            color : this.couleur,
+            thickness : this.epaisseur,
+            sides : this.sides
+        }
+    }
+}
 
