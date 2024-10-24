@@ -15,9 +15,14 @@ function Pencil(ctx, drawing, canvas) {
 	document.getElementById('butLine').onclick = ()=>{this.currEditingMode = editingMode.line}
 	document.getElementById('butCircle').onclick = ()=>{this.currEditingMode = editingMode.circle}
 	document.getElementById('butPoly').onclick = ()=>{this.currEditingMode = editingMode.polygon}
+	document.getElementById('polySides').onchange = (e)=>{this.currSides = e.target.value}
+	document.getElementById('backgroundColor').onchange = (e)=>{
+		drawing.backgroundColor = e.target.value;
+		drawing.paint(ctx)
+	}
+
 	document.getElementById('spinnerWidth').onchange = (e)=>{this.currLineWidth = e.target.value}
 	document.getElementById('colour').onchange = (e)=>{this.currColour = e.target.value}
-	document.getElementById('polySides').onchange = (e)=>{this.currSides = e.target.value}
 
 
 	new DnD(canvas, this);

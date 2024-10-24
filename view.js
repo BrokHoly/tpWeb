@@ -4,11 +4,11 @@ function updateShapeList(forme, id){
 
 function htmlForme(forme, id){
     let htmlContent = `<li id="lirm${id}">`
-    if(forme.constructor === Rectangle){ htmlContent += `<span>□ Rect </span>` }
-    else if(forme.constructor === Line){ htmlContent += `<span>/ Line </span>` }
-    else if(forme.constructor === Circle){ htmlContent += `<span>&#9711 Circle </span>` }
-    else if(forme.constructor === Polygon) { htmlContent += `<span>&#9658 Polygon </span>` }
-    htmlContent += `<button type="button" class="btn btn-default remove" id="burm${id}" style="background:${forme.couleur}"><span class="glyphicon glyphicon-remove-sign"></span></button>`
+    if(forme.constructor === Rectangle){ htmlContent += `<span>□</span><span>Rect` }
+    else if(forme.constructor === Line){ htmlContent += `<span>/</span><span>Line` }
+    else if(forme.constructor === Circle){ htmlContent += `<span>&#9711</span><span>Circle` }
+    else if(forme.constructor === Polygon) { htmlContent += `<span>&#9658</span><span>Polygon (${forme.sides})` }
+    htmlContent += `<button type="button" class="shapeRemover" id="burm${id}" style="background:${forme.couleur}">X</button></span>`
     htmlContent += '</li>'
     return htmlContent
 }
@@ -71,7 +71,7 @@ Polygon.prototype.paint = function(ctx){
 }
 
 Drawing.prototype.paint = function(ctx) {
-    ctx.fillStyle = '#F0F0F0'; // set canvas' background color
+    ctx.fillStyle = this.getBackgroundColor(); // set canvas' background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.getForms().forEach(function (eltDuTableau) {
         // now fill the canvas

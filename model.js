@@ -3,10 +3,15 @@ class Drawing {
 
         this.formes = new Map();
         this.history = new Array()
+        this.backgroundColor = "#f0f0f0";
     }
 
     getForms(){
         return this.formes
+    }
+
+    getBackgroundColor(){
+        return this.backgroundColor
     }
 }
 
