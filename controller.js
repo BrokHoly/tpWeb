@@ -63,7 +63,6 @@ function Pencil(ctx, drawing, canvas) {
 
 function removeShape(drawing, id, ctx, canvas){
 	drawing.formes.delete(id)
-	console.log(drawing.formes)
 	document.getElementById(`lirm${id}`).remove()
 	drawing.paint(ctx,canvas)
 }
