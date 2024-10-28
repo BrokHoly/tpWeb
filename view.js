@@ -4,10 +4,10 @@ function updateShapeList(forme, id){
 
 function htmlForme(forme, id){
     let htmlContent = `<li id="lirm${id}">`
-    if(forme.constructor === Rectangle){ htmlContent += `<span>□</span><span>Rect` }
-    else if(forme.constructor === Line){ htmlContent += `<span>/</span><span>Line` }
-    else if(forme.constructor === Circle){ htmlContent += `<span>&#9711</span><span>Circle` }
-    else if(forme.constructor === Polygon) { htmlContent += `<span>&#9658</span><span>Polygon (${forme.sides})` }
+    if(forme.constructor === Rectangle){ htmlContent += `<span><img class="shapeIcon" src="assets/rectangle-wide-svgrepo-com.svg" alt="rectangle icon"></span><span>Rect` }
+    else if(forme.constructor === Line){ htmlContent += `<span><img class="shapeIcon" src="assets/line-tool-svgrepo-com.svg" alt="line icon"></span><span>Line` }
+    else if(forme.constructor === Circle){ htmlContent += `<span><img class="shapeIcon" src="assets/circle-svgrepo-com.svg" alt="circle icon"></span><span>Circle` }
+    else if(forme.constructor === Polygon) { htmlContent += `<span><img class="shapeIcon" src="assets/triangle-svgrepo-com.svg" alt="polygon icon"></span><span>Polygon (${forme.sides})` }
     htmlContent += `<button type="button" class="shapeRemover" id="burm${id}" style="background:${forme.couleur}">X</button></span>`
     htmlContent += '</li>'
     return htmlContent
