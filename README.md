@@ -13,17 +13,18 @@ Comme demandé, toutes les features de bases ont été ajoutées :
 
 
 ## Travail bonus
-Certaine features supplémentaires, non obligatoires mais proposée dans les consignes du TP, ont aussi été ajoutées tel que : 
+Certaine features supplémentaires, non obligatoires mais proposée dans les consignes du TP ou imaginé, ont aussi été ajoutées tel que : 
 - Dessin de Cercle (Pas d'ellipses)
 - Dessin de Polygones
 - Mise en ligne du TP sur un CDN : https://brokholy.github.io
+- Changement de la couleur du background
 
 
 ## Travail à venir
 Nous désirons ajouter encore quelques features comme :
-- Changement de la couleur du background
 - Boutons Undo/Redo
 - Choisir le style de ligne (ctx.setLineDash)
+- Symboliser les formes avec des SVG dans la liste des formes
 
 
 

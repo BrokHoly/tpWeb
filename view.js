@@ -70,7 +70,7 @@ Polygon.prototype.paint = function(ctx){
     paintPoly(ctx,getPoly)
 }
 
-Drawing.prototype.paint = function(ctx) {
+Drawing.prototype.paint = function(ctx){
     ctx.fillStyle = this.getBackgroundColor(); // set canvas' background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.getForms().forEach(function (eltDuTableau) {
@@ -78,4 +78,21 @@ Drawing.prototype.paint = function(ctx) {
         eltDuTableau.paint(ctx);
     });
 };
+
+Drawing.prototype.clear = function(ctx,tag){
+    this.formes.clear();
+    tag.innerHTML = "";
+    this.paint(ctx);
+}
   
+Drawing.prototype.undo = function(ctx){
+    
+}
+
+Drawing.prototype.redo = function(ctx){
+    // id = this.historyIdArray.pop();
+    // this.formes.set(id,this.historyMap.get(id))
+    // updateShapeList(this.formes.get(id),id)
+    // this.historyMap.delete(id)
+    // this.paint(ctx)
+}

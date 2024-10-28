@@ -9,6 +9,7 @@ function Pencil(ctx, drawing, canvas) {
 	this.currentShape = 0;
 	this.context = ctx;
 	this.currSides = 3;
+	this.lineStyle = 'full'
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 	document.getElementById('butRect').onclick = ()=>{this.currEditingMode = editingMode.rect}
@@ -16,13 +17,16 @@ function Pencil(ctx, drawing, canvas) {
 	document.getElementById('butCircle').onclick = ()=>{this.currEditingMode = editingMode.circle}
 	document.getElementById('butPoly').onclick = ()=>{this.currEditingMode = editingMode.polygon}
 	document.getElementById('polySides').onchange = (e)=>{this.currSides = e.target.value}
-	document.getElementById('backgroundColor').onchange = (e)=>{
-		drawing.backgroundColor = e.target.value;
-		drawing.paint(ctx)
-	}
+	document.getElementById('backgroundColor').onchange = (e)=>{drawing.backgroundColor = e.target.value; drawing.paint(ctx)}
 
+	document.getElementById('lineStyle').onchange = (e)=>{ this.lineStyle = e.target.value}
 	document.getElementById('spinnerWidth').onchange = (e)=>{this.currLineWidth = e.target.value}
 	document.getElementById('colour').onchange = (e)=>{this.currColour = e.target.value}
+
+	const list = document.getElementById('shapeList');
+	document.getElementById('clearButton').onclick = ()=>{ if(confirm("Do you realy want to delete all your drawing ?")) drawing.clear(ctx,list); }
+	document.getElementById('undoButton').onclick = ()=>{ drawing.undo(ctx) }
+	document.getElementById('redoButton').onclick = ()=>{ drawing.redo(ctx) }
 
 
 	new DnD(canvas, this);
@@ -67,6 +71,8 @@ function Pencil(ctx, drawing, canvas) {
 
 
 function removeShape(drawing, id, ctx, canvas){
+	// drawing.historyMap.set(id,drawing.formes.get(id))
+	// drawing.historyIdArray.push(id)
 	drawing.formes.delete(id)
 	document.getElementById(`lirm${id}`).remove()
 	drawing.paint(ctx,canvas)

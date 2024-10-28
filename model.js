@@ -2,7 +2,8 @@ class Drawing {
     constructor(){
 
         this.formes = new Map();
-        this.history = new Array()
+        this.historyMap = new Map();
+        this.historyIdArray = [];
         this.backgroundColor = "#f0f0f0";
     }
 
