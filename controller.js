@@ -1,6 +1,17 @@
 
-var editingMode = { rect: 0, line: 1, circle : 3, polygon : 4 };
+var editingMode = { rect: 0, line: 1, circle : 2, polygon : 3 };
+var lineDashStyles = { solid:[], dashed :[6,2], dotted:[1,1], dashdot:[10,3,3,3]};
 
+
+function applyTickness(arr, thickness){
+	newarr = arr.slice();
+	newarr.forEach((value, index) => {
+		console.log(value*thickness)
+		newarr[index] = value*thickness;
+	})
+	console.log(newarr)
+	return newarr
+}
 
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.rect;
@@ -9,7 +20,7 @@ function Pencil(ctx, drawing, canvas) {
 	this.currentShape = 0;
 	this.context = ctx;
 	this.currSides = 3;
-	this.lineStyle = 'full'
+	this.lineStyle = lineDashStyles.solid
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 	document.getElementById('butRect').onclick = ()=>{this.currEditingMode = editingMode.rect}
@@ -19,7 +30,12 @@ function Pencil(ctx, drawing, canvas) {
 	document.getElementById('polySides').onchange = (e)=>{this.currSides = e.target.value}
 	document.getElementById('backgroundColor').onchange = (e)=>{drawing.backgroundColor = e.target.value; drawing.paint(ctx)}
 
-	document.getElementById('lineStyle').onchange = (e)=>{ this.lineStyle = e.target.value}
+	document.getElementById('lineStyle').onchange = (e)=> {
+		if (e.target.value == 'solid'){this.lineStyle = applyTickness(lineDashStyles.solid,this.currLineWidth)}
+		else if (e.target.value == 'dashed') {this.lineStyle = applyTickness(lineDashStyles.dashed,this.currLineWidth); console.log(e.target.value)}
+		else if (e.target.value == 'dotted') {this.lineStyle = applyTickness(lineDashStyles.dotted,this.currLineWidth); console.log(e.target.value)}
+		else if (e.target.value == 'dashdot') {this.lineStyle = lineDashStyles.dashdot; console.log(e.target.value)}
+	}
 	document.getElementById('spinnerWidth').onchange = (e)=>{this.currLineWidth = e.target.value}
 	document.getElementById('colour').onchange = (e)=>{this.currColour = e.target.value}
 
@@ -40,16 +56,17 @@ function Pencil(ctx, drawing, canvas) {
 
 	this.onInteractionUpdate = function(dnd) {
 		if(this.currEditingMode == editingMode.rect) {
-			this.currentShape = new Rectangle(dnd.basex,dnd.basey,dnd.finx - dnd.basex,dnd.finy - dnd.basey,this.currLineWidth,this.currColour);
+			// console.log(this.lineStyle)
+			this.currentShape = new Rectangle(dnd.basex,dnd.basey,dnd.finx - dnd.basex,dnd.finy - dnd.basey,this.currLineWidth,this.currColour, this.lineStyle);
 		}
 		if(this.currEditingMode == editingMode.line){
-			this.currentShape = new Line(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour);
+			this.currentShape = new Line(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour,this.lineStyle);
 		}
 		if(this.currEditingMode == editingMode.circle){
-			this.currentShape = new Circle(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour);
+			this.currentShape = new Circle(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour,this.lineStyle);
 		}
 		if(this.currEditingMode == editingMode.polygon){
-			this.currentShape = new Polygon(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour,this.currSides);
+			this.currentShape = new Polygon(dnd.basex,dnd.basey,dnd.finx,dnd.finy,this.currLineWidth,this.currColour,this.lineStyle,this.currSides);
 		}
 		drawing.paint(ctx,canvas)
 		this.currentShape.paint(ctx)

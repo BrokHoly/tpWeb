@@ -18,6 +18,7 @@ Rectangle.prototype.paint = function(ctx) {
     var getRect = this.Getters()
     ctx.strokeStyle = getRect.color;
     ctx.lineWidth = getRect.thickness;
+    ctx.setLineDash(getRect.lineStyle);
     ctx.beginPath();
     ctx.rect(getRect.initX, getRect.initY, getRect.finalX, getRect.finalY); // Si jamais, faut inverser ici
     ctx.stroke();
@@ -27,6 +28,7 @@ Line.prototype.paint = function(ctx) {
     var getLine = this.Getters()
     ctx.strokeStyle = getLine.color;
     ctx.lineWidth = getLine.thickness;
+    ctx.setLineDash(getLine.lineStyle);
     ctx.beginPath();
     ctx.moveTo(getLine.initX, getLine.initY);
     ctx.lineTo(getLine.finalX, getLine.finalY);
@@ -37,6 +39,7 @@ Circle.prototype.paint = function(ctx) {
     var getCircle = this.Getters();
     ctx.strokeStyle = getCircle.color;
     ctx.lineWidth = getCircle.thickness;
+    ctx.setLineDash(getCircle.lineStyle);
     ctx.beginPath();
     ctx.arc(getCircle.initX, getCircle.initY, Math.sqrt(Math.pow(getCircle.finalX-getCircle.initX,2)+Math.pow(getCircle.finalY-getCircle.initY,2)), 0, 2 * Math.PI)
     ctx.stroke();
@@ -67,14 +70,14 @@ Polygon.prototype.paint = function(ctx){
     var getPoly = this.Getters();
     ctx.strokeStyle = getPoly.color;
     ctx.lineWidth = getPoly.thickness;
+    ctx.setLineDash(getPoly.lineStyle);
     paintPoly(ctx,getPoly)
 }
 
 Drawing.prototype.paint = function(ctx){
-    ctx.fillStyle = this.getBackgroundColor(); // set canvas' background color
+    ctx.fillStyle = this.getBackgroundColor();
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.getForms().forEach(function (eltDuTableau) {
-        // now fill the canvas
         eltDuTableau.paint(ctx);
     });
 };
