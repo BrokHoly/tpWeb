@@ -19,14 +19,15 @@ Certaine features supplémentaires, non obligatoires mais proposée dans les con
 - Mise en ligne du TP sur un CDN : https://brokholy.github.io.
 - Changement de la couleur du background.
 - Choisir le style de ligne.
+- Transformation complète du style de la page.
 - Mise à jour des valeurs d'édition au rafraichissement de la page.
+- Symboliser les formes avec des SVG dans la liste des formes.
 
 
 ## Travail à venir
 Nous désirons ajouter encore quelques features comme :
 - Boutons Undo/Redo.
-- Symboliser les formes avec des SVG dans la liste des formes.
-- Ajouter un SVG de style de ligne dans la liste des formes.
+- Ajouter un SVG de 'style de ligne' dans la liste des formes.
 
 
 ## Bugs trouvés/Travaux en cours : 
