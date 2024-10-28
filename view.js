@@ -20,7 +20,7 @@ Rectangle.prototype.paint = function(ctx) {
     ctx.lineWidth = getRect.thickness;
     ctx.setLineDash(getRect.lineStyle);
     ctx.beginPath();
-    ctx.rect(getRect.initX, getRect.initY, getRect.finalX, getRect.finalY); // Si jamais, faut inverser ici
+    ctx.rect(getRect.initX, getRect.initY, getRect.finalX, getRect.finalY);
     ctx.stroke();
 };
   

@@ -2,8 +2,6 @@ class Drawing {
     constructor(){
 
         this.formes = new Map();
-        this.historyMap = new Map();
-        this.historyIdArray = [];
         this.backgroundColor = "#f0f0f0";
     }
 
@@ -38,7 +36,6 @@ class Forme{
 }
 
 class Rectangle extends Forme{
-    // Forme.call(this,couleur,epaisseur);
     constructor(startX,startY,largeur,hauteur,epaisseur,couleur,lineStyle){
         super(startX,startY,epaisseur,couleur,lineStyle);
         this.largeur = largeur;
@@ -59,7 +56,6 @@ class Rectangle extends Forme{
 }
 
 class Line extends Forme{
-    //Forme.call(this,couleur,epaisseur);
     constructor(startX,startY,endX,endY,epaisseur,couleur,lineStyle){
         super(startX,startY,epaisseur,couleur,lineStyle);
         this.endX = endX;
