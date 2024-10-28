@@ -45,15 +45,13 @@ Circle.prototype.paint = function(ctx) {
     ctx.stroke();
 };
 
-//Faire attention à la forme de mesure de l'angle.
-//Les x et y d'origine du point par la distance seront ajouter dans paintPoly. Ici on calcul les coordonnées de manière absolue.
+
 function calcCoord(centerDist,sides,corner,angle){
     return {x:(centerDist*(Math.cos(angle+((Math.PI*2)/sides)*corner))),y:(centerDist*(Math.sin(angle+((Math.PI*2)/sides)*corner)))};
 }
 
+//Paint polygons with multiple lines
 function paintPoly(ctx,getPoly){
-    //Là je dois faire autant de linestroke que de sides, en passant par chaques coins.
-    //Calculer l'angle du point de départ aux point d'arrive et la distance
     ctx.beginPath() 
     for(let i=0; i<getPoly.sides+1 ; i++){
         let centerDist = Math.sqrt(Math.pow(getPoly.finalX-getPoly.initX,2)+Math.pow(getPoly.finalY-getPoly.initY,2));
@@ -63,7 +61,6 @@ function paintPoly(ctx,getPoly){
         else  ctx.lineTo(absCoordCorner.x+getPoly.initX,absCoordCorner.y+getPoly.initY)
     }
     ctx.stroke()
-    
 }
 
 Polygon.prototype.paint = function(ctx){
@@ -88,14 +85,6 @@ Drawing.prototype.clear = function(ctx,tag){
     this.paint(ctx);
 }
   
-Drawing.prototype.undo = function(ctx){
-    
-}
+Drawing.prototype.undo = function(ctx){}
 
-Drawing.prototype.redo = function(ctx){
-    // id = this.historyIdArray.pop();
-    // this.formes.set(id,this.historyMap.get(id))
-    // updateShapeList(this.formes.get(id),id)
-    // this.historyMap.delete(id)
-    // this.paint(ctx)
-}
+Drawing.prototype.redo = function(ctx){}
